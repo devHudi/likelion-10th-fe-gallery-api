@@ -12,5 +12,6 @@ public class ImageResponse {
     private Long id;
     private String title;
     private String description;
+    private String imageUrl;
     private LocalDateTime createdAt;
 }

@@ -55,6 +55,6 @@ public class ImageService {
 
     private ImageResponse convertImageToResponse(Image image) {
         return new ImageResponse(image.getId(), image.getTitle().getValue(), image.getDescription().getValue(),
-                image.getCreatedAt());
+                image.getImageUrl().getValue(), image.getCreatedAt());
     }
 }

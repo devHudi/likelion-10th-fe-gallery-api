@@ -8,6 +8,7 @@ import likelion.gallery.service.ImageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,4 +34,9 @@ public class ImageController {
         return ResponseEntity.ok(allImages);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ImageResponse> getImage(@PathVariable Long id) {
+        ImageResponse image = imageService.findImageById(id);
+        return ResponseEntity.ok(image);
+    }
 }
