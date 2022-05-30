@@ -18,16 +18,13 @@ public class ImageDao {
     private static final String TABLE_NAME = "IMAGE";
     private static final String KEY_COLUMN = "id";
 
-    private static final RowMapper<Image> IMAGE_ROW_MAPPER = (rs, rowNum) -> {
-        System.out.println(rs.getString("created_at"));
-        return new Image(
-                new Title(rs.getString("title")),
-                new Description(rs.getString("description")),
-                new ImageUrl(rs.getString("image_url")),
-                rs.getTimestamp("created_at").toLocalDateTime(),
-                rs.getLong("id")
-        );
-    };
+    private static final RowMapper<Image> IMAGE_ROW_MAPPER = (rs, rowNum) -> new Image(
+            new Title(rs.getString("title")),
+            new Description(rs.getString("description")),
+            new ImageUrl(rs.getString("image_url")),
+            rs.getTimestamp("created_at").toLocalDateTime(),
+            rs.getLong("id")
+    );
 
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert jdbcInsert;
