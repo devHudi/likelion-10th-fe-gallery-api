@@ -7,6 +7,7 @@ import likelion.gallery.dto.response.ImageResponse;
 import likelion.gallery.service.ImageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,5 +39,11 @@ public class ImageController {
     public ResponseEntity<ImageResponse> getImage(@PathVariable Long id) {
         ImageResponse image = imageService.findImageById(id);
         return ResponseEntity.ok(image);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ImageResponse> deleteImage(@PathVariable Long id) {
+        imageService.deleteImage(id);
+        return ResponseEntity.ok().build();
     }
 }

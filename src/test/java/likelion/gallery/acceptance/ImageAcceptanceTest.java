@@ -82,4 +82,22 @@ public class ImageAcceptanceTest extends AcceptanceTest {
                         "https://images.unsplash.com/photo-1649798511342-b468e770c222?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")
         );
     }
+
+    @DisplayName("이미지 제거")
+    @Test
+    void deleteImage() {
+        // given
+        Map<String, String> params = new HashMap<>();
+        params.put("title", "이미지1");
+        params.put("description", "이미지1 입니다");
+        params.put("imageUrl",
+                "https://images.unsplash.com/photo-1649798511342-b468e770c222?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+        String id = AcceptanceUtil.postRequest(params, "/images").header("Location").split("/")[2];
+
+        // when
+        ExtractableResponse<Response> actual = AcceptanceUtil.deleteRequest("/images/" + id);
+
+        // then
+        assertThat(actual.statusCode()).isEqualTo(HttpStatus.OK.value());
+    }
 }
