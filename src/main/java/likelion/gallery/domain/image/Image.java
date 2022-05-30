@@ -1,9 +1,15 @@
 package likelion.gallery.domain.image;
 
 import java.time.LocalDateTime;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
-@Data
+@Getter
+@ToString(includeFieldNames = true)
+@EqualsAndHashCode
+@RequiredArgsConstructor
 public class Image {
     private final Long id;
     private final Title title;
