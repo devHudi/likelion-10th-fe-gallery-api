@@ -1,5 +1,6 @@
 package likelion.gallery.controller;
 
+import io.swagger.annotations.Api;
 import java.net.URI;
 import java.util.List;
 import likelion.gallery.dto.request.CommentRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Api(value = "이미지", tags = "이미지와 이미지의 댓글을 관리합니다.")
 @Controller
 @RequestMapping("/images")
 public class ImageController {
