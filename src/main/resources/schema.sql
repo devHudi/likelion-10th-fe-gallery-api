@@ -15,6 +15,7 @@ CREATE TABLE IMAGE
 CREATE TABLE COMMENT
 (
     id         bigint       not null auto_increment,
+    image_id   bigint       not null,
     author     varchar(255) not null,
     body       varchar(255) not null,
     created_at datetime     not null,

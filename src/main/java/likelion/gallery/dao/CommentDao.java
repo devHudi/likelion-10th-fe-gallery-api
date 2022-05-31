@@ -34,8 +34,9 @@ public class CommentDao {
                 .usingGeneratedKeyColumns(KEY_COLUMN);
     }
 
-    public Long save(Comment comment) {
+    public Long save(Long imageId, Comment comment) {
         Map<String, Object> params = new HashMap<>();
+        params.put("image_id", imageId);
         params.put("author", comment.getAuthor().getValue());
         params.put("body", comment.getBody().getValue());
         params.put("created_at", comment.getCreatedAt());
@@ -43,14 +44,14 @@ public class CommentDao {
         return jdbcInsert.executeAndReturnKey(params).longValue();
     }
 
-    public List<Comment> findAll() {
-        String sql = "SELECT id, author, body, created_at FROM COMMENT";
-        return jdbcTemplate.query(sql, COMMENT_ROW_MAPPER);
-    }
-
     public Comment findById(Long id) {
         String sql = "SELECT id, author, body, created_at FROM COMMENT WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, COMMENT_ROW_MAPPER, id);
+    }
+
+    public List<Comment> findByImageId(Long imageId) {
+        String sql = "SELECT id, author, body, created_at FROM COMMENT WHERE image_id = ?";
+        return jdbcTemplate.query(sql, COMMENT_ROW_MAPPER, imageId);
     }
 
     public void delete(Long id) {
